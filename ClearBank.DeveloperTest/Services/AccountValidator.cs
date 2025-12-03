@@ -4,7 +4,10 @@ namespace ClearBank.DeveloperTest.Services
 {
     public class AccountValidator : IAccountValidator
     {
-        
+        /* 
+         * Strictly speaking this code breaks SRP and OCP and can be refactored using a strategy pattern,
+         * but I thought that would make much more unreadable given ther are only 3 cases. 
+         */
         public bool ValidateAccount(PaymentScheme paymentScheme, decimal amount, IAccount account)
         {
             if (account == null) return false;
