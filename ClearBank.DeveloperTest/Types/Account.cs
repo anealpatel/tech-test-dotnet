@@ -1,6 +1,6 @@
 ﻿namespace ClearBank.DeveloperTest.Types
 {
-    public class Account
+    public class Account : IAccount
     {
         public string AccountNumber { get; set; }
         public decimal Balance { get; set; }
