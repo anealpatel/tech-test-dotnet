@@ -1,21 +1,5 @@
-### Test Description
-In the 'PaymentService.cs' file you will find a method for making a payment. At a high level the steps for making a payment are:
+### Change list if time was not a constraint
 
- - Lookup the account the payment is being made from
- - Check the account is in a valid state to make the payment
- - Deduct the payment amount from the account's balance and update the account in the database
- 
-What we’d like you to do is refactor the code with the following things in mind:  
- - Adherence to SOLID principals
- - Testability  
- - Readability 
-
-We’d also like you to add some unit tests to the ClearBank.DeveloperTest.Tests project to show how you would test the code that you’ve produced. The only specific ‘rules’ are:  
-
- - The solution should build.
- - The tests should all pass.
- - You should not change the method signature of the MakePayment method.
-
-You are free to use any frameworks/NuGet packages that you see fit.  
- 
-You should plan to spend around 1 to 3 hours to complete the exercise.
+1. Improve the code coverage. I would have written more tests to cover the full range of sceanrios between Accounts and Payments
+2. The "AllowedPaymentSchemes" enum make use of bitwise operations and I have not catered for that in my testing. My tests only allow for a single value of AllowedPaymentSchemes.
+3. I was unsure of whether to refactor the AccountValidator.cs so it adheres to SRP and OCP. I prefer the case statement. I would consider it if there was to be a lot of change in that class, like regularly swapping out different payments etc.
