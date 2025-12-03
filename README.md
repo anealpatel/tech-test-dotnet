@@ -1,3 +1,11 @@
+### Change list 
+
+1. Implemented IAccountDataStore.cs interface so as to abstract away the implementation of AccountDataStore and BackupAccountDataStore
+2. Refactored MakePayment so that it more closely complied to the SRP and OCP
+3. I moved the account validation into its own class and reworked the double falsy statements to be more readable.
+4. I initially wrote unit test in xunit using Theory and Inline statements, but then changed that to reqnroll to be more readable. This took longer but in the end it is more readable.
+
+
 ### Change list if time was not a constraint
 
 1. Improve the code coverage. I would have written more tests to cover the full range of sceanrios between Accounts and Payments
