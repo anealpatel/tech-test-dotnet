@@ -34,7 +34,7 @@ namespace ClearBank.DeveloperTest.Tests.StepDefinitions
         [Given("a has a payment scheme of {AllowedPaymentSchemes}")]
         public void GivenAHasAPaymentSchemeOf(AllowedPaymentSchemes allowedPaymentSchemes)
         {
-            _ctx.Account.AllowedPaymentSchemes = allowedPaymentSchemes;
+            _ctx.Account.AllowedPaymentSchemes |= allowedPaymentSchemes;
         }
 
         [Given("a {PaymentScheme} payment of ${decimal} is requested")]
@@ -59,7 +59,9 @@ namespace ClearBank.DeveloperTest.Tests.StepDefinitions
             Mock<IAccountDataStoreService> mockAccountDataStoreService = new Mock<IAccountDataStoreService>();
             mockAccountDataStoreService.Setup(x => x.GetAccountDataStore()).Returns(mockBackupAccountDataStore.Object);
 
-            IPaymentService sut = new PaymentService(mockBackupAccountDataStore.Object, new AccountValidator());
+            PaymentSchemeValidatorFactory paymentSchemeValidatorFactory = new PaymentSchemeValidatorFactory();
+
+            IPaymentService sut = new PaymentService(mockBackupAccountDataStore.Object, new AccountValidator(paymentSchemeValidatorFactory));
             _ctx.MakePaymentResult = sut.MakePayment(_ctx.MakePaymentRequest);
         }
 

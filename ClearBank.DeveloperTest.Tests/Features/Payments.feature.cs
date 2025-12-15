@@ -105,7 +105,7 @@ namespace ClearBank.DeveloperTest.Tests.Features
         
         private static global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages InitializeCucumberMessages()
         {
-            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/Payments.feature.ndjson", 11);
+            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/Payments.feature.ndjson", 12);
         }
         
         async global::System.Threading.Tasks.Task global::Xunit.IAsyncLifetime.InitializeAsync()
@@ -454,7 +454,7 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             {
                 await this.ScenarioStartAsync();
 #line 68
- await testRunner.GivenAsync("an account status is Live", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+ await testRunner.GivenAsync("an account status is Disabled", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 69
  await testRunner.AndAsync("a has a balance of $1000", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
@@ -502,7 +502,7 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             {
                 await this.ScenarioStartAsync();
 #line 78
- await testRunner.GivenAsync("an account status is Live", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+ await testRunner.GivenAsync("an account status is Disabled", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 79
  await testRunner.AndAsync("a has a balance of $1000", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
@@ -550,7 +550,7 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             {
                 await this.ScenarioStartAsync();
 #line 88
- await testRunner.GivenAsync("an account status is Live", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+ await testRunner.GivenAsync("an account status is Disabled", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 89
  await testRunner.AndAsync("a has a balance of $100", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
@@ -568,6 +568,60 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
  await testRunner.ThenAsync("the result should be successful", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
 #line 94
+ await testRunner.AndAsync("the account balance should be $-900", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [global::Xunit.SkippableFactAttribute(DisplayName="Test a Bacs payment against a Disabled account with insufficient funds, configure" +
+            "d with Bacs and Chaps payment schemes")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Payments")]
+        [global::Xunit.TraitAttribute("Description", "Test a Bacs payment against a Disabled account with insufficient funds, configure" +
+            "d with Bacs and Chaps payment schemes")]
+        [global::Xunit.TraitAttribute("Category", "BacsChapsAccount")]
+        public async global::System.Threading.Tasks.Task TestABacsPaymentAgainstADisabledAccountWithInsufficientFundsConfiguredWithBacsAndChapsPaymentSchemes()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "BacsChapsAccount"};
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            string pickleIndex = "9";
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Test a Bacs payment against a Disabled account with insufficient funds, configure" +
+                    "d with Bacs and Chaps payment schemes", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string[] tagsOfRule = ((string[])(null));
+            global::Reqnroll.RuleInfo ruleInfo = null;
+#line 97
+this.ScenarioInitialize(scenarioInfo, ruleInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                await testRunner.SkipScenarioAsync();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 98
+ await testRunner.GivenAsync("an account status is Disabled", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 99
+ await testRunner.AndAsync("a has a balance of $100", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 100
+ await testRunner.AndAsync("a has a payment scheme of Bacs", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 101
+ await testRunner.AndAsync("a has a payment scheme of Chaps", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 102
+ await testRunner.AndAsync("a Bacs payment of $1000 is requested", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 103
+ await testRunner.WhenAsync("the payment is made", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 104
+ await testRunner.ThenAsync("the result should be successful", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 105
  await testRunner.AndAsync("the account balance should be $-900", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }

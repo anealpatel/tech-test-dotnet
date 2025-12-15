@@ -65,7 +65,7 @@ Scenario: Test a FasterPayments payment against Live FasterPayments account with
 # tests to show where code logic code be improved
 @FasterPayments
 Scenario: Test a FasterPayments payment against Disabled FasterPayments account with sufficient funds
-	Given an account status is Live 
+	Given an account status is Disabled 
 	And a has a balance of $1000 
 	And a has a payment scheme of FasterPayments
 	And a FasterPayments payment of $100 is requested
@@ -75,7 +75,7 @@ Scenario: Test a FasterPayments payment against Disabled FasterPayments account 
 
 @BacPayments
 Scenario: Test a Bacs payment against Disabled Bacs account with sufficient funds
-	Given an account status is Live 
+	Given an account status is Disabled 
 	And a has a balance of $1000 
 	And a has a payment scheme of Bacs
 	And a Bacs payment of $100 is requested
@@ -85,9 +85,20 @@ Scenario: Test a Bacs payment against Disabled Bacs account with sufficient fund
 
 @BacPayments
 Scenario: Test a Bacs payment against Disabled Bacs account with insufficient funds
-	Given an account status is Live 
+	Given an account status is Disabled 
 	And a has a balance of $100 
 	And a has a payment scheme of Bacs
+	And a Bacs payment of $1000 is requested
+	When the payment is made
+	Then the result should be successful
+	And the account balance should be $-900
+
+@BacsChapsAccount
+Scenario: Test a Bacs payment against a Disabled account with insufficient funds, configured with Bacs and Chaps payment schemes
+	Given an account status is Disabled 
+	And a has a balance of $100 
+	And a has a payment scheme of Bacs
+	And a has a payment scheme of Chaps
 	And a Bacs payment of $1000 is requested
 	When the payment is made
 	Then the result should be successful
